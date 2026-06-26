@@ -78,3 +78,26 @@ df.replace(
 
 print("\n========== MISSING VALUES AFTER CLEANING ==========")
 print(df.isnull().sum())
+
+missing_percent = (df.isnull().sum() / len(df)) * 100
+print(missing_percent.sort_values(ascending=False))
+
+df["MonthlyIncome"] = df["MonthlyIncome"].fillna(
+    df["MonthlyIncome"].median()
+)
+
+df["NumberOfDependents"] = df["NumberOfDependents"].fillna(
+    df["NumberOfDependents"].median()
+)
+print(df.isnull().sum())
+
+print(df[df["age"] <= 0])
+
+for col in df.select_dtypes(include="number"):
+    print(col)
+    print(df[col].describe())
+
+df.to_csv(
+    "data/cleaned/cs-training-cleaned.csv",
+    index=False
+)
