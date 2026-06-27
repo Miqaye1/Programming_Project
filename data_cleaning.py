@@ -168,3 +168,9 @@ df.to_csv(
     "data/cleaned/cs-training-cleaned.csv",
     index=False
 )
+
+print("\n========== DEBT RATIO > 831 ==========")
+
+high_debt = df[df["DebtRatio"] > 1111]
+
+print("Number of rows with DebtRatio > 831:", len(high_debt))
